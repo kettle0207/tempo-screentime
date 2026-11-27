@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework><OutputType>WinExe</OutputType>
+    <AssemblyName>Tempo.Dashboard</AssemblyName><RootNamespace>Tempo</RootNamespace>
+    <LangVersion>latest</LangVersion><PlatformTarget>x64</PlatformTarget>
+    <ApplicationManifest>app.manifest</ApplicationManifest><ApplicationIcon>tempo.ico</ApplicationIcon>
+    <Version>1.3.0</Version><Product>Tempo Screen Time</Product>
+    <Description>Tempo スクリーンタイム</Description>
+    <DebugType>none</DebugType><AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all"/>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3650.58"/>
+    <Reference Include="System.Windows.Forms"/><Reference Include="System.Drawing"/>
+    <Reference Include="System.Web.Extensions"/><Reference Include="System.Security"/>
+    <EmbeddedResource Include="UI/*" LogicalName="UI.%(Filename)%(Extension)"/>
+  </ItemGroup>
+<ItemGroup><EmbeddedResource Include="../native/schema.sql" LogicalName="Tempo.Schema"/></ItemGroup></Project>

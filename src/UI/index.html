@@ -1,0 +1,42 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tempo — スクリーンタイム</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="symbols" aria-hidden="true"><defs>
+<symbol id="overview" viewBox="0 0 24 24"><path d="M5 20V11m7 9V4m7 16v-6"/></symbol>
+<symbol id="apps" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8"/></symbol>
+<symbol id="sites" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.5 5.3 3.5 8.5s-1.1 6-3.5 8.5c-2.4-2.5-3.5-5.3-3.5-8.5s1.1-6 3.5-8.5Z"/></symbol>
+<symbol id="settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4m0 13.6v2.4M2.8 12h2.4m13.6 0h2.4M5.5 5.5l1.7 1.7m9.6 9.6 1.7 1.7m0-13-1.7 1.7m-9.6 9.6-1.7 1.7"/></symbol>
+<symbol id="left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+<symbol id="right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+<symbol id="up" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></symbol>
+<symbol id="down" viewBox="0 0 24 24"><path d="M12 5v14m-6-6 6 6 6-6"/></symbol>
+<symbol id="edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16Z"/></symbol>
+<symbol id="close" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11m0-11-11 11"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></symbol>
+</defs></svg>
+<div class="shell">
+<aside>
+<div class="brand"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>Tempo</span></div>
+<nav aria-label="ナビゲーション">
+<button data-page="overview" title="概要"><svg><use href="#overview"/></svg><span>概要</span></button>
+<button data-page="apps" title="アプリ"><svg><use href="#apps"/></svg><span>アプリ</span></button>
+<button data-page="sites" title="Webサイト"><svg><use href="#sites"/></svg><span>Webサイト</span></button>
+</nav>
+<div class="sidefoot"><button data-page="settings" title="設定"><svg><use href="#settings"/></svg><span>設定</span></button><div class="record" title="記録を確認中"><b></b><span id="record-text">記録を確認中</span></div></div>
+</aside>
+<main>
+<header><h1 id="title">スクリーンタイム</h1></header>
+<div id="notice" role="status" hidden></div>
+<section class="controls" aria-label="表示期間" id="controls">
+<div class="segment" id="period" role="group" aria-label="集計単位"><button data-period="day">日</button><button data-period="week">週</button><button data-period="month">月</button><button data-period="year">年</button></div>
+<div class="dategroup">
+<button id="back" class="iconbtn" aria-label="前の期間"><svg><use href="#left"/></svg></button>
+<label class="datepick"><span id="date-label">今日</span><input id="date" type="date" aria-label="履歴の日付"></label>
+<button id="next" class="iconbtn" aria-label="次の期間"><svg><use href="#right"/></svg></button>
+<button id="today" class="today" hidden>今日</button>
+</div>
+</section>
+<div id="content" aria-busy="true"></div>
+</main>
+</div>
+<dialog id="editor"><form method="dialog"><div class="dialoghead"><h2>カテゴリを変更</h2><button aria-label="閉じる" class="iconbtn"><svg><use href="#close"/></svg></button></div><p id="edit-name"></p><div id="options"></div><div class="dialogfoot"><button class="secondary" value="cancel">キャンセル</button><button class="primary" id="save" type="button">保存</button></div></form></dialog>
+</body></html>

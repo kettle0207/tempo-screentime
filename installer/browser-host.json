@@ -1,0 +1,9 @@
+{
+  "name": "local.tempo.screentime",
+  "description": "Tempo local browser bridge",
+  "path": "Tempo.BrowserHost.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://fbfjbcbgbkpccidoalkgdjjkiggchdgf/"
+  ]
+}

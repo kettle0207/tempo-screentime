@@ -1,0 +1,2 @@
+﻿integrity=ok days=1 total_h=0.65 rules=2 settings=['idle', 'initialized', 'startupDesired', 'theme'] apps=11 legacy=0 compact=15
+compare: past days preserved = True  | rules equal = True | settings equal = True | growth_s = 158.9

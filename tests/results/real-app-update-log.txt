@@ -1,0 +1,40 @@
+﻿### scenario: badsig
+== check 15:12:11
+更新情報の署名が正規の配布元と一致しません。更新を中止しました。
+### scenario: offline
+== check 15:12:16
+### scenario: truncate
+== check 15:17:34
+Tempo 1.2.1 |  | 2026-11-27 · 0.7 MB |  | 更新テスト用の版です | 記録と設定を引き継ぎます | ダウンロードして更新
+== install 15:17:39
+### scenario: offline (rerun with fixed driver)
+== check 15:18:13
+check took 3.3 s
+== check 15:18:26
+更新サーバーに接続できません。インターネット接続を確認してください。
+check took 4.1 s
+### scenario: truncate
+== check 15:18:39
+Tempo 1.2.1 |  | 2026-11-27 · 0.7 MB |  | 更新テスト用の版です | 記録と設定を引き継ぎます | ダウンロードして更新
+== install 15:18:42
+state: ダウンロードが途中で切断されました。現在の版を引き続き使用できます。 |  | もう一度試す
+updates folder: []
+running: ScreenTime=8296 Tempo.Dashboard=20316 | installed=1.2.0
+### scenario: corrupt
+== check 15:18:45
+Tempo 1.2.1 |  | 2026-11-27 · 0.7 MB |  | 更新テスト用の版です | 記録と設定を引き継ぎます | ダウンロードして更新
+== install 15:18:48
+state: 更新ファイルが破損しているか、署名された内容と一致しません。更新を中止しました。 |  | もう一度試す
+updates folder: []
+running: ScreenTime=8296 Tempo.Dashboard=20316 | installed=1.2.0
+### scenario: normal update 1.2.0 -> 1.2.1
+== check 15:19:45
+Tempo 1.2.1 |  | 2026-11-27 · 0.7 MB |  | 更新テスト用の版です | 記録と設定を引き継ぎます | ダウンロードして更新
+== install 15:19:49
+state: Tempo 1.2.1 |  | 2026-11-27 · 0.7 MB |  | 更新テスト用の版です | 記録と設定を引き継ぎます |  | 記録を保存して更新しています。完了すると Tempo が再起動します。
+dashboard closed: TargetClosedError
+after: resident pid 8296 -> 20296 | installed=1.2.1 | dashboard file=1.2.1.0 | updates folder=[]
+== info 15:19:55
+version: Tempo 1.2.1
+notice: Tempo 1.2.1 に更新しました。（1.2.0 から）履歴と設定を引き継いで記録を再開しています。
+record: 記録中

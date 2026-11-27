@@ -1,0 +1,10 @@
+badsig /releases/latest/download/tempo-update.txt {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+truncate /releases/latest/download/tempo-update.txt {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+truncate /releases/latest/download/tempo-update.txt {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+truncate /releases/latest/download/tempo-update.txt {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+truncate /releases/latest/download/tempo-update.txt {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+truncate /releases/download/v1.2.1/Tempo-Setup-x64.exe {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+corrupt /releases/latest/download/tempo-update.txt {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+corrupt /releases/download/v1.2.1/Tempo-Setup-x64.exe {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+normal /releases/latest/download/tempo-update.txt {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}
+normal /releases/download/v1.2.1/Tempo-Setup-x64.exe {'User-Agent': 'Tempo-Updater', 'Accept': 'application/octet-stream', 'Cache-Control': 'no-store,no-cache', 'Pragma': 'no-cache'}

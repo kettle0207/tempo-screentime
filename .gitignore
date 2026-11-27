@@ -1,0 +1,16 @@
+**/obj/
+**/bin/
+installer/stage/
+__pycache__/
+*.partial
+
+# Release assets go to GitHub Releases, not the repository.
+dist/
+
+# Private update-signing key: never commit. Back it up offline.
+release-keys/
+*.xml.key
+
+# Machine-specific test output (real usage data from the test PC).
+docs/screens/real-*.png
+tests/results/snap-*.json
