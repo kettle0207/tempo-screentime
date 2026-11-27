@@ -22,6 +22,9 @@ internal static class UpdateTests
         public readonly string Base;
         public byte[] Manifest = Array.Empty<byte>(), Installer = Array.Empty<byte>();
         public bool Truncate;
+        // Runs after the first megabyte of the installer is sent and before the rest, so a test can act mid-download
+        // regardless of how fast the machine or the loopback connection is.
+        public Action? MidDownload;
         public readonly List<string> Requests = new();
         public Feed()
         {
@@ -50,6 +53,15 @@ internal static class UpdateTests
                         await c.Response.OutputStream.WriteAsync(body.AsMemory(0, body.Length / 2));
                         await c.Response.OutputStream.FlushAsync();
                         c.Response.Abort();
+                        continue;
+                    }
+                    if (MidDownload != null && body == Installer && body.Length > 1_000_000)
+                    {
+                        await c.Response.OutputStream.WriteAsync(body.AsMemory(0, 1_000_000));
+                        await c.Response.OutputStream.FlushAsync();
+                        MidDownload();
+                        await c.Response.OutputStream.WriteAsync(body.AsMemory(1_000_000));
+                        c.Response.Close();
                         continue;
                     }
                     await c.Response.OutputStream.WriteAsync(body);
@@ -116,7 +128,11 @@ internal static class UpdateTests
             using var cancel = new CancellationTokenSource();
             var big = new byte[60_000_000]; feed.Installer = big;
             var bigInfo = UpdateManifest.Parse(Sign(key, "1.3.0", big), pub);
-            Expect(Catch(() => client.Download(bigInfo, (r, t) => { if (r > 1_000_000) cancel.Cancel(); }, cancel.Token)) is OperationCanceledException, "download can be cancelled");
+            // Cancel from the feed side after 1 MB: progress callbacks are throttled to 150 ms, and a fast machine can
+            // finish the whole loopback download before the first one fires.
+            feed.MidDownload = () => cancel.Cancel();
+            Expect(Catch(() => client.Download(bigInfo, null, cancel.Token)) is OperationCanceledException, "download can be cancelled");
+            feed.MidDownload = null;
             Expect(!Directory.EnumerateFiles(folder).Any(), "cancelled download leaves no file");
 
             lock (feed.Requests)
